@@ -69,11 +69,16 @@ module.exports = function (state, prev, send) {
     var display = html`<div></div>`
     display.innerHTML = marked(state.doc || '')
 
-    return html`
+    var doc = html`
       <div>
         ${display}
       </div>
     `
+
+    var title = (doc.querySelector('h1') || {}).innerText
+    document.title = title || 'js.la Wiki'
+
+    return doc
   }
 
   function onDocChange (evt) { send('editDoc', evt.target.value) }
