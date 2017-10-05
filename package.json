@@ -1,0 +1,51 @@
+{
+  "name": "wiki",
+  "version": "3.3.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "postinstall": "npm run build",
+    "dev": "npm run watch-js & npm run watch-server",
+    "watch-js": "watchify client/index.js -t [sheetify/transform] -g es2020 -o public/main.js -dv",
+    "watch-server": "nodemon index.js",
+    "build": "browserify client/index.js -t [sheetify/transform] -g es2020 | uglifyjs -mc > public/main.js",
+    "test": "standard"
+  },
+  "keywords": [],
+  "author": "David Guttman <david@guttman.io> (http://davidguttman.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "async-cache": "^1.1.0",
+    "authentic-service": "^0.2.2",
+    "authentic-ui": "^1.1.0",
+    "bl": "^1.1.2",
+    "body": "^5.1.0",
+    "browserify": "^13.3.0",
+    "choo": "^3.3.0",
+    "dotenv": "^4.0.0",
+    "drag-drop": "^2.12.1",
+    "ecstatic": "^2.1.0",
+    "es2020": "^1.1.9",
+    "health-route": "^3.0.2",
+    "http-hash-router": "^1.1.0",
+    "knox": "^0.9.2",
+    "map-async": "^0.1.1",
+    "marked": "^0.3.6",
+    "productionize": "^2.0.0",
+    "req-logger": "^1.1.0",
+    "s3-lister": "^0.1.0",
+    "sheetify": "^5.2.0",
+    "tachyons": "^4.5.5",
+    "through": "^2.3.8",
+    "through2": "^2.0.1",
+    "uglify-js": "^2.7.4",
+    "validator": "^6.1.0",
+    "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "standard": "^8.6.0",
+    "watchify": "^3.7.0"
+  }
+}
