@@ -21,7 +21,6 @@ var auth = Authentic(config.authentic)
 var accessCache = new AsyncCache({
   load: function (k, cb) {
     db.get('_access', function (err, doc) {
-      console.log('err', err)
       if (err) return cb(err)
       doc = doc || ''
       var list = doc
@@ -79,6 +78,7 @@ function main (req, res, opts) {
   var title = 'Wiki'
   var html = [
     '<html><head><title>' + title + '</title>',
+    '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
     '<link rel="icon" type="image/png" href="/icon16.png"></head>',
     '<body><script src="main.js?v=' + version + '"></script></body></html>'
@@ -89,6 +89,7 @@ function main (req, res, opts) {
 
 function getDoc (req, res, opts) {
   res.statusCode = 200
+  res.setHeader('content-type', 'text/plain')
   db.getDocStream(opts.params.name).pipe(res)
 }
 
